@@ -10,7 +10,7 @@ def main():
     res = 1000 #Resolution of output image (in dpi)
 
     # Import Image
-    f = r"Data\World.png"
+    f = r"Data\World.png" #### <-- Path to heightmap image
     print("Importing image")
     dat = plt.imread(f)[10:-10, 10:-10]   #Sometimes the edges cause problems
     if len(dat.shape) > 2:                #If the image has more than 1 color
