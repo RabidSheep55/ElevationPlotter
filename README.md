@@ -9,4 +9,4 @@ Here's an example using a heightmap of Australia I found [here](http://i.imgur.c
 ![Australia example graphic](https://github.com/RabidSheep55/ElevationPlotter/blob/master/Example.jpg)
 
 # How to use
-Simple! just download the map.py file, open it up and change the path to the source heightmap image you want to use, and tweak the parameters at the top until you get something you like!
+Simple! just download the map.py file, open it up, change the path to the source heightmap image you want to use, and tweak the parameters at the top until you get something you like!
