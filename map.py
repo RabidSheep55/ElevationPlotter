@@ -3,12 +3,13 @@ import numpy as np
 import re
 
 def main():
-    l = 40             #Number of lines to plot
-    threshold = 0.05    #Min height value to draw (0 to 1)
-    scale = 2           #Scale line heights (for more or less line overlap)
+    l = 70              #Number of lines to plot
+    threshold = 0.04    #Min height value to draw (0 to 1)
+    scale = 2.5         #Scale line heights (for more or less line overlap)
+    thickness = 1       #Line thickness
 
     # Import Image
-    f = "Data\Australia.jpg"
+    f = r"Data\UK.png"
     dat = plt.imread(f)[1:, 10:-10, 0]  #Reading red channel only (b/w image)
 
     m = np.max(dat)     #Usually 225 (used for normalizing)
@@ -32,7 +33,7 @@ def main():
         line[line[:,1] < threshold, :] = None
 
         #Plot current slice
-        plt.plot(line[:, 0], line[:, 1] * height + h - i, "black")
+        plt.plot(line[:, 0], line[:, 1] * height + h - i, "black", linewidth=thickness)
 
         #We don't want to see lines that cross with this one
         plt.fill(line[:, 0], line[:, 1] * height + h - i, "White")
@@ -44,7 +45,7 @@ def main():
     plt.axis('off')
 
     #Save to file and view
-    plt.savefig(re.sub("Data", "Images", f), dpi=400 ,bbox_inches='tight')
+    plt.savefig(re.sub("Data", "Images", f), dpi=400, bbox_inches='tight')
     plt.show()
 
 
