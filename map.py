@@ -3,14 +3,18 @@ import numpy as np
 import re
 
 def main():
-    l = 70              #Number of lines to plot
-    threshold = 0.04    #Min height value to draw (0 to 1)
-    scale = 2.5         #Scale line heights (for more or less line overlap)
-    thickness = 1       #Line thickness
+    l = 150 #Number of lines to plot
+    threshold = 0.001 #Min height value to draw (0 to 1)
+    scale = 2.8 #Scale line heights (for more or less line overlap)
+    thickness = 0.3 #Line thickness
+    res = 1000 #Resolution of output image (in dpi)
 
     # Import Image
-    f = r"Data\UK.png"
-    dat = plt.imread(f)[1:, 10:-10, 0]  #Reading red channel only (b/w image)
+    f = r"Data\World.png"
+    print("Importing image")
+    dat = plt.imread(f)[10:-10, 10:-10]   #Sometimes the edges cause problems
+    if len(dat.shape) > 2:                #If the image has more than 1 color
+        dat = dat[:, :, 0]                #Use only the red channel
 
     m = np.max(dat)     #Usually 225 (used for normalizing)
     h = len(dat)        #Image Height
@@ -22,6 +26,7 @@ def main():
     x = np.arange(0, w) #Used to plot all
 
     #Draw all lines
+    print("Drawing lines")
     for i in range(0, h, step):
 
         #Retrieve slice data, and normalize height from 0 to 1 (/m)
@@ -45,7 +50,8 @@ def main():
     plt.axis('off')
 
     #Save to file and view
-    plt.savefig(re.sub("Data", "Images", f), dpi=400, bbox_inches='tight')
+    print("Saving image")
+    plt.savefig(re.sub("Data", "Images", f), dpi=res, bbox_inches='tight')
     plt.show()
 
 
