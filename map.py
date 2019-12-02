@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import re
 
 def main():
     l = 40             #Number of lines to plot
@@ -7,7 +8,8 @@ def main():
     scale = 2           #Scale line heights (for more or less line overlap)
 
     # Import Image
-    dat = plt.imread("Data\Australia.jpg")[1:, 10:-10, 0]
+    f = "Data\Australia.jpg"
+    dat = plt.imread(f)[1:, 10:-10, 0]
 
     m = np.max(dat)     #Usually 225
     h = len(dat)        #Image Height
@@ -33,8 +35,16 @@ def main():
         #We don't want to see lines that cross with this one
         plt.fill(line[:, 0], line[:, 1] * height + h - i, "White")
 
+    #Pyplot settings
     plt.axis("equal")
+    plt.xticks([])
+    plt.yticks([])
+    plt.axis('off')
+
+    #Save to file and view
+    plt.savefig(re.sub("Data", "Images", f), dpi=400 ,bbox_inches='tight')
     plt.show()
+
 
 if __name__ == '__main__':
     main()
