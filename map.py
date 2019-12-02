@@ -9,21 +9,23 @@ def main():
 
     # Import Image
     f = "Data\Australia.jpg"
-    dat = plt.imread(f)[1:, 10:-10, 0]
+    dat = plt.imread(f)[1:, 10:-10, 0]  #Reading red channel only (b/w image)
 
-    m = np.max(dat)     #Usually 225
+    m = np.max(dat)     #Usually 225 (used for normalizing)
     h = len(dat)        #Image Height
     w = len(dat[0])     #Image Width
 
     step = int(h / l)
     height = step * scale
 
-    x = np.arange(0, w)
+    x = np.arange(0, w) #Used to plot all
 
     #Draw all lines
     for i in range(0, h, step):
 
         #Retrieve slice data, and normalize height from 0 to 1 (/m)
+        #Zip and transpose into a 2 by width matrix containing
+        #x and y values together (useful when we need to remove some later)
         line = np.stack((x, (dat[i,:]/m))).T
 
         #Replace all values below threshold with None
