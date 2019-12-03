@@ -3,14 +3,14 @@ import numpy as np
 import re
 
 def main():
-    l = 90 #Number of lines to plot
-    threshold = 0.001 #Min height value to draw (0 to 1)
-    scale = 2 #Scale line heights (for more or less line overlap)
-    thickness = 0.9 #Line thickness
+    l = 80 #Number of lines to plot
+    threshold = 0.35 #Min height value to draw (0 to 1)
+    scale = 3 #Scale line heights (for more or less line overlap)
+    thickness = 0.6 #Line thickness
     res = 300 #Resolution of output image (in dpi)
 
     # Import Image
-    f = r"INPUT PATH HERE" #### <-- Path to heightmap image
+    f = r"ENTER PATH HERE" #### <-- Path to heightmap image
     print("Importing image")
     dat = plt.imread(f)[10:-10, 10:-10]   #Sometimes the edges cause problems
     if len(dat.shape) > 2:                #If the image has more than 1 color
@@ -41,7 +41,7 @@ def main():
         plt.plot(line[:, 0], line[:, 1] * height + h - i, "black", linewidth=thickness)
 
         #We don't want to see lines that cross with this one
-        plt.fill(line[:, 0], line[:, 1] * height + h - i, "Black")
+        plt.fill(line[:, 0], line[:, 1] * height + h - i, "White")
 
     #Pyplot settings
     plt.axis("equal")
