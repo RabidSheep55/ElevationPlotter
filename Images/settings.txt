@@ -12,3 +12,11 @@ threshold = 0.001
 scale = 1.5
 thickness = 1
 res = 300
+
+Rose.jpeg
+Changed plt.fill to color in pink
+l = 90
+threshold = 0.001
+scale = 2
+thickness = 0.9
+res = 300
