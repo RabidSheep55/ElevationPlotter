@@ -9,6 +9,7 @@ def main():
     scale = 3 #Scale line heights (for more or less line overlap)
     thickness = 1#Line thickness
     res = 300 #Resolution of output image (in dpi)
+    text = False #Print text?
 
     # Import Image
     f = r"Data\UK.png" #### <-- Path to heightmap image
@@ -51,9 +52,10 @@ def main():
     plt.axis('off')
 
     #Add text
-    s = 'UK'
-    customFont = fm.FontProperties(fname=r'alien_encounters\Alien-Encounters-Regular.ttf')
-    plt.text(0, h, s, verticalalignment='top', fontproperties=customFont, size=int(w*0.2/len(s)))
+    if text:
+        s = 'UK'
+        customFont = fm.FontProperties(fname=r'alien_encounters\Alien-Encounters-Regular.ttf')
+        plt.text(0, h, s, verticalalignment='top', fontproperties=customFont, size=int(w*0.2/len(s)))
 
     #Save to file and view
     print("Saving image")
