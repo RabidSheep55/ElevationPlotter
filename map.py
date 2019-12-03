@@ -1,16 +1,17 @@
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 import numpy as np
 import re
 
 def main():
     l = 80 #Number of lines to plot
-    threshold = 0.35 #Min height value to draw (0 to 1)
+    threshold = 0.04 #Min height value to draw (0 to 1)
     scale = 3 #Scale line heights (for more or less line overlap)
-    thickness = 0.6 #Line thickness
+    thickness = 1#Line thickness
     res = 300 #Resolution of output image (in dpi)
 
     # Import Image
-    f = r"ENTER PATH HERE" #### <-- Path to heightmap image
+    f = r"Data\UK.png" #### <-- Path to heightmap image
     print("Importing image")
     dat = plt.imread(f)[10:-10, 10:-10]   #Sometimes the edges cause problems
     if len(dat.shape) > 2:                #If the image has more than 1 color
@@ -49,10 +50,15 @@ def main():
     plt.yticks([])
     plt.axis('off')
 
+    #Add text
+    s = 'UK'
+    customFont = fm.FontProperties(fname=r'alien_encounters\Alien-Encounters-Regular.ttf')
+    plt.text(0, h, s, verticalalignment='top', fontproperties=customFont, size=int(w*0.2/len(s)))
+
     #Save to file and view
     print("Saving image")
     # plt.savefig(re.sub("Data", "Images", f), dpi=res, bbox_inches='tight')
-    plt.savefig(re.sub(r"\\(\w+)\.", r"\\\1-graphic.", f), dpi=res, bbox_inches='tight')
+    # plt.savefig(re.sub(r"\\(\w+)\.", r"\\\1-graphic.", f), dpi=res, bbox_inches='tight')
     plt.show()
 
 
